@@ -12,6 +12,7 @@ import chapterRoutes from './routes/chapterRoutes.js';
 import topicRoutes from './routes/topicRoutes.js';
 import progressRoutes from './routes/progressRoutes.js';
 import notesRoutes from './routes/notesRoutes.js';
+
 // Config
 dotenv.config();
 const app = express();
@@ -33,7 +34,7 @@ app.use((req, res, next) => {
   next();
 });
 
-// Built-in middleware and CORS (optional if you have the global middleware above)
+// Built-in middleware and CORS
 app.use(express.json());
 app.use(cors({ origin: process.env.FRONTEND_URL, credentials: true }));
 
@@ -51,5 +52,14 @@ app.use('/api/progress', progressRoutes);
 app.use('/api/notes', notesRoutes);
 app.use('/api/admin', adminRoutes);
 
-// Start server
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+// Test route
+app.get("/", (req, res) => {
+  res.send("Server is running!");
+});
+
+
+  app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+
+
+
+export default app;
