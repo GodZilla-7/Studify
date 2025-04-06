@@ -17,7 +17,23 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 8960;
 
+// Global CORS headers middleware
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", process.env.FRONTEND_URL);
+  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+  );
+  res.header("Access-Control-Allow-Credentials", "true");
 
+  if (req.method === "OPTIONS") {
+    return res.sendStatus(200);
+  }
+  next();
+});
+
+// Built-in middleware and CORS (optional if you have the global middleware above)
 app.use(express.json());
 app.use(cors({ origin: process.env.FRONTEND_URL, credentials: true }));
 
@@ -27,10 +43,6 @@ mongoose.connect(process.env.MONGO_URI)
   .catch(err => console.log('MongoDB Connection Error:', err));
 
 // API Routes
-
-app.get("/", (req, res) => {
-  res.send("Server is running!");
-});
 app.use('/api/auth', authRoutes);
 app.use('/api/subjects', subjectRoutes);
 app.use('/api/chapters', chapterRoutes);
@@ -39,10 +51,10 @@ app.use('/api/progress', progressRoutes);
 app.use('/api/notes', notesRoutes);
 app.use('/api/admin', adminRoutes);
 
-// Start server
+
+app.get("/", (req, res) => {
+  res.send("Server is running!");
+});
 
 
-if (!process.env.VERCEL_ENV) {
-  app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
-}
-export default app;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
