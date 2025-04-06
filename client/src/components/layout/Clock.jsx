@@ -45,7 +45,7 @@ const Clock = () => {
 
     return (
         <div 
-            className="flex flex-col items-center text-center cursor-pointer mb-8 text-black"
+            className="flex flex-col items-center text-center cursor-pointer mb-8"
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
         >
@@ -60,11 +60,12 @@ const Clock = () => {
                 <div className="mt-4 flex items-center gap-2">
                     <span className="text-sm">12-hour</span>
                     <input 
-                        type="checkbox" 
-                        className="toggle toggle-secondary" 
-                        checked={is24HourFormat} 
-                        onChange={() => setIs24HourFormat(!is24HourFormat)} 
-                    />
+    type="checkbox" 
+    className="toggle toggle-primary dark:toggle-accent scale-125 transition-all" 
+    checked={is24HourFormat} 
+    onChange={() => setIs24HourFormat(!is24HourFormat)} 
+/>
+
                     <span className="text-sm">24-hour</span>
                 </div>
             )}

@@ -4,7 +4,7 @@ import { getSubjectsBySemester } from '../services/api';
 import Navbar from '../components/layout/Navbar';
 import SubjectCard from '../components/layout/SubjectCard';
 import Clock from '../components/layout/Clock';
-import Quotes from 'inspirational-quotes'; // Import package
+import Quotes from 'inspirational-quotes';
 
 const DashboardPage = () => {
   const { user } = useAuth();
@@ -27,32 +27,20 @@ const DashboardPage = () => {
     };
 
     fetchSubjects();
-
-    // Fetch a motivational quote from the package
     setQuote(Quotes.getQuote().text);
   }, [user.semester]);
 
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div className="min-h-screen bg-gray-900 text-white">
       <Navbar />
-
       <div className="container mx-auto px-4 py-8 flex flex-col items-center gap-8">
-        {/* Motivational Quote Section */}
-        <Clock/>
-   
-       
-     
-
+        <Clock />
         {loading ? (
-          <div className="flex justify-center items-center py-16">
-            <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
-          </div>
+          <span className="loading loading-spinner text-primary"></span>
         ) : error ? (
-          <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
-            {error}
-          </div>
+          <div className="alert alert-error shadow-lg">{error}</div>
         ) : subjects.length === 0 ? (
-          <div className="bg-yellow-100 border border-yellow-400 text-yellow-700 px-4 py-3 rounded">
+          <div className="alert alert-warning shadow-lg">
             No subjects found for semester {user.semester}.
           </div>
         ) : (
@@ -62,9 +50,7 @@ const DashboardPage = () => {
             ))}
           </div>
         )}
-           <p className="text-gray-600 mt-2">
-          "{quote}"
-          </p>
+        <p className="text-gray-400 mt-2">"{quote}"</p>
       </div>
     </div>
   );

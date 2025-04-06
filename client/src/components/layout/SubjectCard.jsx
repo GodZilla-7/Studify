@@ -5,13 +5,13 @@ import { AiOutlineFileText } from "react-icons/ai";
 
 const SubjectCard = ({ subject }) => {
   return (
-    <div className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow flex flex-col justify-between items-center relative overflow-hidden">
+    <div className="card bg-gray-800 text-white shadow-xl p-6 hover:shadow-2xl transition-shadow flex flex-col justify-between items-center relative overflow-hidden">
       {/* Subject Info */}
       <div className="my-12 relative z-10">
         {/* Subject Icon (if available) */}
         {subject.iconLink && (
           <div className="relative w-32 h-32">
-            <div className="absolute -inset-x-5 -inset-y-10 z-0 w-full h-full">
+            <div className="absolute -inset-x-5 -inset-y-10 z-0 w-full h-full opacity-60">
               <JellyWaveBackground />
             </div>
             <img
@@ -26,8 +26,8 @@ const SubjectCard = ({ subject }) => {
       <div className="flex items-center space-x-4 z-10 relative">
         {/* Subject Name & Description */}
         <Link to={`/subjects/${subject._id}/chapters`} className="flex flex-col items-center">
-          <h3 className="text-xl font-bold text-blue-600 mb-2">{subject.name}</h3>
-          {subject.description && <p className="text-gray-600 text-center">{subject.description}</p>}
+          <h3 className="text-xl font-bold text-accent mb-2">{subject.name}</h3>
+          {subject.description && <p className="text-gray-300 text-center">{subject.description}</p>}
         </Link>
       </div>
 
@@ -39,9 +39,9 @@ const SubjectCard = ({ subject }) => {
             href={subject.bookLink}
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-blue-600 text-white text-sm px-3 py-1 rounded-md flex items-center space-x-2 hover:bg-blue-700 transition"
+            className="btn btn-accent flex items-center space-x-2"
           >
-            <FaBook className="w-3 h-3 mx-1 my-1" />
+            <FaBook className="w-4 h-4" />
             <span>eBook</span>
           </a>
         )}
@@ -52,7 +52,7 @@ const SubjectCard = ({ subject }) => {
             href={subject.pyqLink}
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-blue-600 text-white text-sm px-3 py-1 rounded-md flex items-center space-x-2 hover:bg-blue-700 transition"
+            className="btn btn-accent flex items-center space-x-2"
           >
             <AiOutlineFileText className="w-4 h-4" />
             <span>PYQ's</span>
@@ -80,18 +80,17 @@ const JellyWaveBackground = () => {
       width="200%" 
       height="200%" 
       viewBox="0 0 400 400" 
-      className="absolute -inset-1/3"
+      className="absolute -inset-1/3 opacity-40"
       style={{ 
         transform: `rotate(${rotation}deg)`,
         transition: 'transform 0.5s linear',
-        opacity: 0.7
       }}
     >
       <defs>
         <linearGradient id="jellyGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#a8d8ff" />
-          <stop offset="50%" stopColor="#7cb9ff" />
-          <stop offset="100%" stopColor="#5e9eff" />
+          <stop offset="0%" stopColor="#4f46e5" />
+          <stop offset="50%" stopColor="#3b82f6" />
+          <stop offset="100%" stopColor="#1e40af" />
         </linearGradient>
         <filter id="gooey">
           <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />

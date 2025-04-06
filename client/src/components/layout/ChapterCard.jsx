@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { getUserProgress, getTopicsByChapter } from '../../services/api'; 
+
 const ChapterCard = ({ chapter, subjectId }) => {
   const [progress, setProgress] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -46,31 +47,32 @@ const ChapterCard = ({ chapter, subjectId }) => {
   return (
     <Link
       to={`/subjects/${subjectId}/chapters/${chapter._id}/topics`}
-      className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow"
+      className="bg-white dark:bg-gray-800 dark:text-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow"
     >
-      <h3 className="text-xl font-bold text-blue-600 mb-2">{chapter.name}</h3>
-      {chapter.description && <p className="text-gray-600 mb-4">{chapter.description}</p>}
+      <h3 className="text-xl font-bold text-accent dark:text-accent mb-2">{chapter.name}</h3>
+      {chapter.description && (
+        <p className="text-gray-600 dark:text-gray-300 mb-4">{chapter.description}</p>
+      )}
       
       {/* Progress section */}
       {loading ? (
-        <div className="w-full bg-gray-200 rounded-full h-2.5 mt-4">
-          <div className="bg-gray-400 h-2.5 rounded-full animate-pulse w-full"></div>
+        <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5 mt-4">
+          <div className="bg-gray-400 dark:bg-gray-500 h-2.5 rounded-full animate-pulse w-full"></div>
         </div>
       ) : progress && progress.total > 0 ? (
         <div className="mt-4">
           <div className="flex justify-between items-center mb-1 text-sm">
-            
-            <span className="text-gray-700">{progress.percentage}%</span>
+            <span className="text-gray-700 dark:text-gray-300">{progress.percentage}% Completed</span>
           </div>
-          <div className="w-full bg-gray-200 rounded-full h-2.5">
+          <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5">
             <div 
-              className="bg-blue-600 h-2.5 rounded-full" 
+              className="bg-accent dark:bg-accent h-2.5 rounded-full transition-all"
               style={{ width: `${progress.percentage}%` }}
             ></div>
           </div>
         </div>
       ) : (
-        <p className="text-sm text-gray-500 italic mt-4">No topics available</p>
+        <p className="text-sm text-gray-500 dark:text-gray-400 italic mt-4">No topics available</p>
       )}
     </Link>
   );

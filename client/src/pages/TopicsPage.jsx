@@ -49,28 +49,28 @@ const TopicsPage = () => {
   }, [chapterId]);
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
       <Navbar />
 
       <div className="container mx-auto px-4 py-8">
         <div className="mb-6">
           <Link
             to={`/subjects/${subjectId}/chapters`}
-            className="text-blue-600 hover:underline"
+            className="text-blue-600 dark:text-blue-400 hover:underline"
           >
             ← Back to Chapters
           </Link>
         </div>
 
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-800">
+          <h1 className="text-3xl font-bold text-gray-800 dark:text-white">
             {chapter ? chapter.name : "Chapter"} Topics
           </h1>
-          <p className="text-gray-600">
+          <p className="text-gray-600 dark:text-gray-400">
             Check off topics as you complete them to track your progress.
           </p>
           {topics.length > 0 && (
-            <p className="mt-2 text-lg font-semibold text-primary">
+            <p className="mt-2 text-lg font-semibold text-blue-600 dark:text-blue-400">
               Progress: {completedCount}/{topics.length}
             </p>
           )}
@@ -78,31 +78,25 @@ const TopicsPage = () => {
 
         {loading ? (
           <div className="flex justify-center items-center py-16">
-            <span className="loading loading-spinner loading-lg text-primary"></span>
+            <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500 dark:border-blue-400"></div>
           </div>
         ) : error ? (
-          <div className="alert alert-error">
-            <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-            <span>{error}</span>
+          <div className="bg-red-100 dark:bg-red-900 border border-red-400 dark:border-red-600 text-red-700 dark:text-red-300 px-4 py-3 rounded">
+            {error}
           </div>
         ) : topics.length === 0 ? (
-          <div className="alert alert-warning">
-            <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
-            <span>No topics found for this chapter.</span>
+          <div className="bg-yellow-100 dark:bg-yellow-900 border border-yellow-400 dark:border-yellow-600 text-yellow-700 dark:text-yellow-300 px-4 py-3 rounded">
+            No topics found for this chapter.
           </div>
         ) : (
-          
-          <div className="card bg-base-100 shadow-xl">
-            
+          <div className="card bg-base-100 dark:bg-gray-800 shadow-xl">
             <div className="card-body p-0">
               <div className="overflow-x-auto">
-                <table className="table table-zebra">
-                  {/* head */}
+              <table className="table table-zebra">
+                  {/* Table Head */}
                   <thead>
-                    <tr>
-                      <th>
-                        Status
-                      </th>
+                    <tr className=" bg-base-100 dark:text-gray-300">
+                      <th>Status</th>
                       <th>Topic Name</th>
                       <th>Video</th>
                       <th>Notes</th>
