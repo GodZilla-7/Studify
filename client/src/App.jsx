@@ -11,7 +11,7 @@ import RegisterPage from './pages/RegisterPage';
 import DashboardPage from './pages/DashboardPage';
 import ChaptersPage from './pages/ChaptersPage';
 import TopicsPage from './pages/TopicsPage';
-import AdminRedirect from './pages/adminRedirect';
+import AdminRedirect from './pages/AdminRedirectt';
 
 const App = () => {
   return (

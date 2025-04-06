@@ -19,7 +19,7 @@ const PORT = process.env.PORT || 8960;
 
 // Global CORS headers middleware
 app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "http://localhost:5173");
+  res.header("Access-Control-Allow-Origin", process.env.FRONTEND_URL);
   res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
   res.header(
     "Access-Control-Allow-Headers",
@@ -27,7 +27,6 @@ app.use((req, res, next) => {
   );
   res.header("Access-Control-Allow-Credentials", "true");
 
-  // Handle preflight requests
   if (req.method === "OPTIONS") {
     return res.sendStatus(200);
   }
@@ -36,7 +35,7 @@ app.use((req, res, next) => {
 
 // Built-in middleware and CORS (optional if you have the global middleware above)
 app.use(express.json());
-app.use(cors({ origin: 'http://localhost:5173', credentials: true }));
+app.use(cors({ origin: process.env.FRONTEND_URL, credentials: true }));
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGO_URI)

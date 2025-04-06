@@ -29,7 +29,7 @@ const AdminPage = () => {
   const [activeTab, setActiveTab] = useState('subjects');
   const [currentSemester, setCurrentSemester] = useState(1);
 
-  const BASE_URL = 'http://localhost:8960';
+  const BASE_URL = '${import.meta.env.VITE_BACKEND_URL}';
 
   useEffect(() => {
     fetchSubjects();

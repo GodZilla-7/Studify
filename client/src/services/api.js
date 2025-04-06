@@ -1,4 +1,4 @@
-const BASE_URL = 'http://localhost:8960'; // Use correct server port
+const BASE_URL = `${import.meta.env.VITE_BACKEND_URL}`; // Use correct server port
 
 // Helper function to handle API requests with authentication
 const authFetch = async (endpoint, options = {}) => {

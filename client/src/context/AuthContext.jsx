@@ -32,7 +32,7 @@ export const AuthProvider = ({ children }) => {
   // Login user
   const login = async (email, password) => {
     try {
-      const response = await fetch('http://localhost:8960/api/auth/login', {
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/auth/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password })
@@ -57,7 +57,7 @@ export const AuthProvider = ({ children }) => {
   // Register user
   const register = async (userData) => {
     try {
-        const response = await fetch('http://localhost:8960/api/auth/register', {
+        const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/auth/register`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(userData)
