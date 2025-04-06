@@ -27,6 +27,11 @@ mongoose.connect(process.env.MONGO_URI)
   .catch(err => console.log('MongoDB Connection Error:', err));
 
 // API Routes
+app.use((req, res, next) => {
+  console.log(`Incoming request: ${req.method} ${req.url}`);
+  next();
+});
+
 app.use('/api/auth', authRoutes);
 app.use('/api/subjects', subjectRoutes);
 app.use('/api/chapters', chapterRoutes);
