@@ -27,11 +27,10 @@ mongoose.connect(process.env.MONGO_URI)
   .catch(err => console.log('MongoDB Connection Error:', err));
 
 // API Routes
-app.use((req, res, next) => {
-  console.log(`Incoming request: ${req.method} ${req.url}`);
-  next();
-});
 
+app.get("/", (req, res) => {
+  res.send("Server is running!");
+});
 app.use('/api/auth', authRoutes);
 app.use('/api/subjects', subjectRoutes);
 app.use('/api/chapters', chapterRoutes);
@@ -41,9 +40,7 @@ app.use('/api/notes', notesRoutes);
 app.use('/api/admin', adminRoutes);
 
 // Start server
-app.get("/", (req, res) => {
-  res.send("Server is running!");
-});
+
 
 if (!process.env.VERCEL_ENV) {
   app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
