@@ -21,7 +21,7 @@ export default function AdminRedirect() {
         />
       </div>
       <a href='/'>
-      <h1 className="text-3xl font-bold text-center mb-8 text-indigo-800">Studify</h1>
+      <h1 className="text-3xl font-bold text-center mb-8 text-accent">Studify</h1>
       </a>
       <div/>
       <input
@@ -32,7 +32,7 @@ export default function AdminRedirect() {
         onChange={(e) => setRoute(e.target.value)}
         
       />
-      <button onClick={handleGo} className="btn btn-primary">
+      <button onClick={handleGo} className="btn btn-accent">
         Enter Admin Panel
       </button>
     </div>
