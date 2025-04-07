@@ -5,30 +5,22 @@ const AdminPage = () => {
   const [subjects, setSubjects] = useState([]);
   const [chapters, setChapters] = useState([]);
   const [topics, setTopics] = useState([]);
-
-  // Subject fields
   const [subjectName, setSubjectName] = useState('');
   const [subjectSemester, setSubjectSemester] = useState(1);
   const [subjectDescription, setSubjectDescription] = useState('');
   const [subjectBookLink, setSubjectBookLink] = useState('');
   const [subjectPyqLink, setSubjectPyqLink] = useState('');
   const [subjectIconLink, setSubjectIconLink] = useState('');
-
-  // Chapter fields
   const [chapterName, setChapterName] = useState('');
   const [chapterDescription, setChapterDescription] = useState('');
   const [selectedSubject, setSelectedSubject] = useState('');
-
-  // Topic fields
   const [topicName, setTopicName] = useState('');
   const [topicDescription, setTopicDescription] = useState('');
   const [topicYtLink, setTopicYtLink] = useState('');
   const [topicNotes, setTopicNotes] = useState('');
   const [selectedChapter, setSelectedChapter] = useState('');
-
   const [activeTab, setActiveTab] = useState('subjects');
   const [currentSemester, setCurrentSemester] = useState(1);
-
   const BASE_URL = `${import.meta.env.VITE_BACKEND_URL}`;
 
   useEffect(() => {
@@ -194,10 +186,10 @@ const AdminPage = () => {
   };
 
   return (
-    <div className='min-h-[100vh] bg-gray-100 flex items-center justify-center py-12'>
+    <div className='min-h-[100vh] bg-base-100 flex items-center justify-center py-12'>
 
   
-    <div className="max-w-4xl mx-auto p-6 bg-white shadow-lg rounded-lg">
+    <div className="max-w-4xl mx-auto p-6 shadow-lg rounded-lg">
     <div className="flex justify-center mb-4">
         <img 
           className='h-20 w-20' 
@@ -206,23 +198,23 @@ const AdminPage = () => {
         />
       </div>
       <a href='/'>
-      <h1 className="text-3xl font-bold text-center mb-8 text-indigo-800">Studify</h1>
+      <h1 className="text-3xl font-bold text-center mb-8 text-accent">Studify</h1>
       </a>
       <div className="flex border-b mb-6">
         <button 
-          className={`px-4 py-2 font-medium ${activeTab === 'subjects' ? 'text-indigo-600 border-b-2 border-indigo-600' : 'text-gray-500'}`}
+          className={`px-4 py-2 font-medium ${activeTab === 'subjects' ? 'text-accent border-b-2 border-indigo-600' : 'text-gray-500'}`}
           onClick={() => setActiveTab('subjects')}
         >
           Subjects
         </button>
         <button 
-          className={`px-4 py-2 font-medium ${activeTab === 'chapters' ? 'text-indigo-600 border-b-2 border-indigo-600' : 'text-gray-500'}`}
+          className={`px-4 py-2 font-medium ${activeTab === 'chapters' ? 'text-accent border-b-2 border-indigo-600' : 'text-gray-500'}`}
           onClick={() => setActiveTab('chapters')}
         >
           Chapters
         </button>
         <button 
-          className={`px-4 py-2 font-medium ${activeTab === 'topics' ? 'text-indigo-600 border-b-2 border-indigo-600' : 'text-gray-500'}`}
+          className={`px-4 py-2 font-medium ${activeTab === 'topics' ? 'text-accent border-b-2 border-indigo-600' : 'text-gray-500'}`}
           onClick={() => setActiveTab('topics')}
         >
           Topics
@@ -237,7 +229,7 @@ const AdminPage = () => {
               {[1, 2, 3, 4, 5, 6, 7, 8].map((sem) => (
                 <button
                   key={sem}
-                  className={`px-3 py-1 rounded ${currentSemester === sem ? 'bg-indigo-600 text-white' : 'bg-gray-200'}`}
+                  className={`px-3 py-1 rounded ${currentSemester === sem ? 'bg-accent text-white' : 'bg-base-200'}`}
                   onClick={() => changeSemester(sem)}
                 >
                   {sem}
@@ -246,7 +238,7 @@ const AdminPage = () => {
             </div>
           </div>
           
-          <div className="mb-6 p-4 bg-gray-50 rounded-lg">
+          <div className="mb-6 p-4 bg-base-200 rounded-lg">
             <h2 className="text-xl font-semibold mb-4">Add New Subject</h2>
             <div className="flex flex-wrap gap-3">
               <input 
@@ -289,7 +281,7 @@ const AdminPage = () => {
                 placeholder="Icon Link" 
               />
               <button 
-                className="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 transition duration-200"
+                className="bg-accent text-white px-4 py-2 rounded hover:bg-indigo-700 transition duration-200"
                 onClick={addSubject}
               >
                 Add Subject
@@ -299,17 +291,17 @@ const AdminPage = () => {
 
           <div className="overflow-hidden rounded-lg border border-gray-200">
             <table className="min-w-full divide-y divide-gray-200">
-              <thead className="bg-gray-50">
+              <thead className="bg-base-200">
                 <tr>
                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Subject Name</th>
                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Semester</th>
                   <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
                 </tr>
               </thead>
-              <tbody className="bg-white divide-y divide-gray-200">
+              <tbody className="bg-base-200 divide-y divide-gray-200">
                 {subjects && subjects.length > 0 ? (
                   subjects.map((subject) => (
-                    <tr key={subject._id} className="hover:bg-gray-50">
+                    <tr key={subject._id} className="hover:bg-base-200">
                       <td className="px-6 py-4 whitespace-nowrap">{subject.name}</td>
                       <td className="px-6 py-4 whitespace-nowrap">{subject.semester}</td>
                       <td className="px-6 py-4 whitespace-nowrap text-right">
@@ -337,7 +329,7 @@ const AdminPage = () => {
 
       {activeTab === 'chapters' && (
         <div>
-          <div className="mb-6 p-4 bg-gray-50 rounded-lg">
+          <div className="mb-6 p-4 bg-base-200 rounded-lg">
             <h2 className="text-xl font-semibold mb-4">Add New Chapter</h2>
             <div className="flex flex-wrap gap-3">
               <select 
@@ -368,7 +360,7 @@ const AdminPage = () => {
                 disabled={!selectedSubject}
               />
               <button 
-                className="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 transition duration-200 disabled:bg-indigo-300"
+                className="bg-accent text-white px-4 py-2 rounded hover:bg-indigo-700 transition duration-200 disabled:bg-indigo-300"
                 onClick={addChapter}
                 disabled={!selectedSubject}
               >
@@ -379,17 +371,17 @@ const AdminPage = () => {
 
           <div className="overflow-hidden rounded-lg border border-gray-200">
             <table className="min-w-full divide-y divide-gray-200">
-              <thead className="bg-gray-50">
+              <thead className="bg-base-200">
                 <tr>
                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Chapter Name</th>
                   <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
                 </tr>
               </thead>
-              <tbody className="bg-white divide-y divide-gray-200">
+              <tbody className="bg-base-200 divide-y divide-gray-200">
                 {selectedSubject ? (
                   chapters && chapters.length > 0 ? (
                     chapters.map((chapter) => (
-                      <tr key={chapter._id} className="hover:bg-gray-50">
+                      <tr key={chapter._id} className="hover:bg-base-200">
                         <td className="px-6 py-4 whitespace-nowrap">{chapter.name}</td>
                         <td className="px-6 py-4 whitespace-nowrap text-right">
                           <button 
@@ -421,7 +413,7 @@ const AdminPage = () => {
 
       {activeTab === 'topics' && (
         <div>
-          <div className="mb-6 p-4 bg-gray-50 rounded-lg">
+          <div className="mb-6 p-4 bg-base-200 rounded-lg">
             <h2 className="text-xl font-semibold mb-4">Add New Topic</h2>
             <div className="flex flex-wrap gap-3">
               <select 
@@ -458,15 +450,9 @@ const AdminPage = () => {
                 placeholder="YouTube Link" 
                 disabled={!selectedChapter}
               />
-              <input 
-                className="flex-1 p-2 border rounded focus:outline-none focus:ring-2 focus:ring-indigo-300" 
-                value={topicNotes} 
-                onChange={(e) => setTopicNotes(e.target.value)} 
-                placeholder="Notes" 
-                disabled={!selectedChapter}
-              />
+
               <button 
-                className="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 transition duration-200 disabled:bg-indigo-300"
+                className="bg-accent text-white px-4 py-2 rounded hover:bg-indigo-700 transition duration-200 disabled:bg-indigo-300"
                 onClick={addTopic}
                 disabled={!selectedChapter}
               >
@@ -477,17 +463,17 @@ const AdminPage = () => {
 
           <div className="overflow-hidden rounded-lg border border-gray-200">
             <table className="min-w-full divide-y divide-gray-200">
-              <thead className="bg-gray-50">
+              <thead className="bg-base-200">
                 <tr>
                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Topic Name</th>
                   <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
                 </tr>
               </thead>
-              <tbody className="bg-white divide-y divide-gray-200">
+              <tbody className="bg-base-200 divide-y divide-gray-200">
                 {selectedChapter ? (
                   topics && topics.length > 0 ? (
                     topics.map((topic) => (
-                      <tr key={topic._id} className="hover:bg-gray-50">
+                      <tr key={topic._id} className="hover:bg-base-200">
                         <td className="px-6 py-4 whitespace-nowrap">{topic.name}</td>
                         <td className="px-6 py-4 whitespace-nowrap text-right">
                           <button 
