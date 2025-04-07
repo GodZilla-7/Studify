@@ -12,7 +12,7 @@ export default function AdminRedirect() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen gap-4 bg-amber-50">
+    <div className="flex flex-col items-center justify-center h-screen gap-4 bg-base-100">
             <div className="flex justify-center mb-4">
         <img 
           className='h-20 w-20' 
