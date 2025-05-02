@@ -20,34 +20,39 @@ const RegisterForm = () => {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setError('');
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  setError('');
 
-    // Validate form
-    if (!formData.name || !formData.email || !formData.password || !formData.semester) {
-      return setError('All fields are required');
-    }
+  // Validate form
+  if (!formData.name || !formData.email || !formData.password || !formData.semester) {
+    return setError('All fields are required');
+  }
 
-    if (formData.password !== formData.confirmPassword) {
-      return setError('Passwords do not match');
-    }
+  if (formData.password.length < 5) {
+    return setError('Password must be at least 5 characters long');
+  }
 
-    try {
-      setLoading(true);
-      await register({
-        name: formData.name,
-        email: formData.email,
-        password: formData.password,
-        semester: Number(formData.semester)
-      });
-      navigate('/dashboard');
-    } catch (error) {
-      setError(error.message || 'Registration failed');
-    } finally {
-      setLoading(false);
-    }
-  };
+  if (formData.password !== formData.confirmPassword) {
+    return setError('Passwords do not match');
+  }
+
+  try {
+    setLoading(true);
+    await register({
+      name: formData.name,
+      email: formData.email,
+      password: formData.password,
+      semester: Number(formData.semester)
+    });
+    navigate('/dashboard');
+  } catch (error) {
+    setError(error.message || 'Registration failed');
+  } finally {
+    setLoading(false);
+  }
+};
+
 
   return (
     <div className="card w-96 shadow-lg p-8 rounded-lg bg-opacity-10 backdrop-blur-md">

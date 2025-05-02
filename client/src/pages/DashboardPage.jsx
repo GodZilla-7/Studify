@@ -5,6 +5,7 @@ import Navbar from '../components/layout/Navbar';
 import SubjectCard from '../components/layout/SubjectCard';
 import Clock from '../components/layout/Clock';
 import Quotes from 'inspirational-quotes';
+import SearchBox from '../components/layout/Search';
 
 const DashboardPage = () => {
   const { user } = useAuth();
@@ -35,6 +36,8 @@ const DashboardPage = () => {
       <Navbar />
       <div className="container mx-auto px-4 py-8 flex flex-col items-center gap-8">
         <Clock />
+        
+        <SearchBox />
         {loading ? (
           <span className="loading loading-spinner text-primary"></span>
         ) : error ? (
