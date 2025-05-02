@@ -37,7 +37,7 @@ const DashboardPage = () => {
       <div className="container mx-auto px-4 py-8 flex flex-col items-center gap-8">
         <Clock />
         
-        <SearchBox />
+    <SearchBox />
         {loading ? (
           <span className="loading loading-spinner text-primary"></span>
         ) : error ? (

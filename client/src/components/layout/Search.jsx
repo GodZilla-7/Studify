@@ -13,9 +13,9 @@ const SearchBox = () => {
   };
 
   return (
-<div className="fixed z-50 flex justify-center items-center top-2/3 left-1/2 -translate-x-1/2 -translate-y-1/2">
+<div className="z-50">
 
-      <form onSubmit={handleSearch} className="flex gap-2 w-96">
+      <form onSubmit={handleSearch} className="flex gap-2 w-96 mb-4">
         <input
           type="text"
 

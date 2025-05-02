@@ -40,6 +40,7 @@ const ChaptersPage = () => {
           </Link>
         </div>
         
+        
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-gray-800 dark:text-white">
             {subject ? subject.name : 'Subject'} Chapters
@@ -48,7 +49,7 @@ const ChaptersPage = () => {
             Select a chapter to view topics and track your progress.
           </p>
         </div>
-        
+      
         {loading ? (
           <div className="flex justify-center items-center py-16">
             <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500 dark:border-blue-400"></div>

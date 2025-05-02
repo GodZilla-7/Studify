@@ -3,6 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import { getTopicsByChapter, getUserProgress } from "../services/api";
 import Navbar from "../components/layout/Navbar";
 import TopicCheckbox from "../components/layout/TopicCheckbox";
+import SearchBox from "../components/layout/Search";
 
 const TopicsPage = () => {
   const { subjectId, chapterId } = useParams();
@@ -61,6 +62,7 @@ const TopicsPage = () => {
             ← Back to Chapters
           </Link>
         </div>
+    
 
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-gray-800 dark:text-white">
@@ -75,7 +77,7 @@ const TopicsPage = () => {
             </p>
           )}
         </div>
-
+    <SearchBox/>
         {loading ? (
           <div className="flex justify-center items-center py-16">
             <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500 dark:border-blue-400"></div>
